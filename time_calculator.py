@@ -1,4 +1,4 @@
-def add_time(start, duration, day):
+def add_time(start, duration, day="None"):
 
     # Creates a list with the days
     days_of_the_week = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -66,7 +66,12 @@ def add_time(start, duration, day):
       number_of_weeks += 1
       day_identifier = day_identifier % 7
     
+    if day_of_the_week == "none":
 
-    new_time = str(hours)+":"+ str(minutes) +" "+ period+", "+ days_of_the_week[day_identifier] + " ("+ str(round(int(duration_time[0]) / 24 )) + " days later)"
+      new_time = str(hours)+":"+ str(minutes) +" "+ period
+      
+    else:
+      new_time = str(hours)+":"+ str(minutes) +" "+ period+", "+ days_of_the_week[day_identifier] + " ("+ str(round(int(duration_time[0]) / 24 )) + " days later)"
+
     ##expected = "6:18 AM, Monday (20 days later)"
     return new_time
