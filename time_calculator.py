@@ -16,6 +16,7 @@ def add_time(start, duration, day="None"):
 
     # caculate the amount of day from the given hours
     number_of_days =  int(duration_time[0]) // 24 
+    number_of_days_show = int(duration_time[0]) // 24 
     # caculate the amount of hours to add from the given hours
     number_of_hours = int(duration_time[0]) % 24 
     # calculates the number of week from the calculated days
@@ -44,8 +45,7 @@ def add_time(start, duration, day="None"):
     if hours >= 12 and period == "PM":
       hours = hours - 12
       period = "AM"
-      
-
+      number_of_days_show +=1
     elif hours >= 12 and period == "AM":
       hours = hours - 12
       period = "PM"
@@ -87,12 +87,12 @@ def add_time(start, duration, day="None"):
       if number_of_days == 1:
         new_time = str(hours)+":"+ str(minutes) +" "+ period+" (next day)" 
       else:  
-        new_time = str(hours)+":"+ str(minutes) +" "+ period+" ("+ str(number_of_days + 7*number_of_weeks) + " days later)"
+        new_time = str(hours)+":"+ str(minutes) +" "+ period+" ("+ str(number_of_days_show) + " days later)"
 
     elif day_of_the_week == "none":
       new_time = str(hours)+":"+ str(minutes) +" "+ period
     else:
-      new_time = str(hours)+":"+ str(minutes) +" "+ period+", "+ days_of_the_week[day_identifier] + " ("+ str(number_of_days + 7*number_of_weeks) + " days later)"
+      new_time = str(hours)+":"+ str(minutes) +" "+ period+", "+ days_of_the_week[day_identifier] + " ("+ str(number_of_days_show) + " days later)"
 
 
   
