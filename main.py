@@ -3,8 +3,8 @@ from time_calculator import add_time
 from unittest import main
 
 
-print(add_time("3:30 PM", "2:12", "Monday"))
-##expected = "6:18 AM, Monday (20 days later)"
+print(add_time("8:16 PM", "466:02", "tuesday"))
+
 
 
 # Run unit tests automatically
