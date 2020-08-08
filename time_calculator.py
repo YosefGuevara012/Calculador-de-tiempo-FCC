@@ -17,13 +17,16 @@ def add_time(start, duration, day="None"):
     # caculate the amount of day from the given hours
     number_of_days =  int(duration_time[0]) // 24 
     number_of_days_show = int(duration_time[0]) // 24 
+    print("number_of_days: "+ str(number_of_days))
     # caculate the amount of hours to add from the given hours
     number_of_hours = int(duration_time[0]) % 24 
+    print("number_of_hours: "+ str(number_of_hours))
     # calculates the number of week from the calculated days
     number_of_weeks = number_of_days // 7
+    print("number_of_weeks: "+ str(number_of_weeks))
     # calculates the numer of days to add
     number_of_days = number_of_days % 7
-    
+    print("number_of_days_2: "+ str(number_of_days))
 
     # Calculates the final result of the minutes
     minutes = int(start_hour[1])+ int(duration_time[1])
@@ -74,25 +77,30 @@ def add_time(start, duration, day="None"):
       number_of_weeks += 1
       day_identifier = day_identifier % 7
     
-    
+    print("number_of_days_show: "+ str(number_of_days_show))
 
     #print("day_identifier " + str(day_identifier))
     
     
     if number_of_days == 0 and day_of_the_week != "none" : 
-      new_time = str(hours)+":"+ str(minutes) +" "+ period+" "+ days_of_the_week[day_identifier]
-
+      new_time = str(hours)+":"+ str(minutes) +" "+ period+", "+ days_of_the_week[day_identifier]
+      print("A")
+    elif number_of_days_show == 1:
+      new_time = str(hours)+":"+ str(minutes) +" "+ period+" (next day)" 
+      print("B")
     elif number_of_days > 0 and day_of_the_week == "none" : 
 
       if number_of_days == 1:
         new_time = str(hours)+":"+ str(minutes) +" "+ period+" (next day)" 
       else:  
         new_time = str(hours)+":"+ str(minutes) +" "+ period+" ("+ str(number_of_days_show) + " days later)"
-
+      print("C")
     elif day_of_the_week == "none":
       new_time = str(hours)+":"+ str(minutes) +" "+ period
+      print("D")
     else:
       new_time = str(hours)+":"+ str(minutes) +" "+ period+", "+ days_of_the_week[day_identifier] + " ("+ str(number_of_days_show) + " days later)"
+      print("E")
 
 
   
