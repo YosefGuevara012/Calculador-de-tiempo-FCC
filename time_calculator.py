@@ -16,16 +16,13 @@ def add_time(start, duration, day="None"):
 
     # caculate the amount of day from the given hours
     number_of_days =  int(duration_time[0]) // 24 
-
     # caculate the amount of hours to add from the given hours
     number_of_hours = int(duration_time[0]) % 24 
-
     # calculates the number of week from the calculated days
     number_of_weeks = number_of_days // 7
-
     # calculates the numer of days to add
     number_of_days = number_of_days % 7
-
+    
 
     # Calculates the final result of the minutes
     minutes = int(start_hour[1])+ int(duration_time[1])
@@ -44,13 +41,19 @@ def add_time(start, duration, day="None"):
       
     # analize if the hours are > than 12 to set the period of the day  
 
-    if hours > 12 and period == "PM":
+    if hours >= 12 and period == "PM":
       hours = hours - 12
       period = "AM"
       
-    elif hours > 12 and period == "AM":
+
+    elif hours >= 12 and period == "AM":
       hours = hours - 12
       period = "PM"
+
+    if hours == 0:
+      hours = 12
+    
+      
       
     day_identifier = 0
 
@@ -58,20 +61,39 @@ def add_time(start, duration, day="None"):
       if days_of_the_week[i].casefold() == day_of_the_week:
         day_identifier = i+1
     
+    #print("day_identifier " + str(day_identifier))
 
     day_identifier += number_of_days
+    #print("day_identifier += number_of_days " + str(day_identifier))
 
     
-    if day_identifier >= 7:
+    
+    if number_of_days == 0 :
+      day_identifier -= 1
+    elif day_identifier >= 7:
       number_of_weeks += 1
       day_identifier = day_identifier % 7
     
-    if day_of_the_week == "none":
+    
 
+    #print("day_identifier " + str(day_identifier))
+    
+    
+    if number_of_days == 0 and day_of_the_week != "none" : 
+      new_time = str(hours)+":"+ str(minutes) +" "+ period+" "+ days_of_the_week[day_identifier]
+
+    elif number_of_days > 0 and day_of_the_week == "none" : 
+
+      if number_of_days == 1:
+        new_time = str(hours)+":"+ str(minutes) +" "+ period+" (next day)" 
+      else:  
+        new_time = str(hours)+":"+ str(minutes) +" "+ period+" ("+ str(number_of_days + 7*number_of_weeks) + " days later)"
+
+    elif day_of_the_week == "none":
       new_time = str(hours)+":"+ str(minutes) +" "+ period
-      
     else:
-      new_time = str(hours)+":"+ str(minutes) +" "+ period+", "+ days_of_the_week[day_identifier] + " ("+ str(round(int(duration_time[0]) / 24 )) + " days later)"
+      new_time = str(hours)+":"+ str(minutes) +" "+ period+", "+ days_of_the_week[day_identifier] + " ("+ str(number_of_days + 7*number_of_weeks) + " days later)"
 
-    ##expected = "6:18 AM, Monday (20 days later)"
+
+  
     return new_time

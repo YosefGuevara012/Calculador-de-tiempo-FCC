@@ -3,7 +3,7 @@ from time_calculator import add_time
 from unittest import main
 
 
-print(add_time("11:55 AM", "3:12"))
+print(add_time("11:59 PM", "24:05", "Wednesday"))
 ##expected = "6:18 AM, Monday (20 days later)"
 
 
